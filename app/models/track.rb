@@ -1,4 +1,7 @@
 require 'mp3info'
+require 'rss/2.0'
+require 'rss/itunes'
+require 'mime/types'
 
 class Track < ActiveRecord::Base
   has_attached_file :mp3, :storage => :s3, 
@@ -19,5 +22,40 @@ class Track < ActiveRecord::Base
       self.comments = song.tag.comments
       self.artist = song.tag.artist
     end
+  end
+  
+  # Make XML for a podcast.
+  def self.rss
+    rss = RSS::Rss.new("2.0")
+    channel = RSS::Rss::Channel.new
+    
+    category = RSS::ITunesChannelModel::ITunesCategory.new("Arts")
+    channel.itunes_categories << category
+    
+    channel.title = "Butter Music Library"
+    channel.description = "The music library of Butter Music and Sound"
+    channel.link = "http://gimmebutter.com"
+    channel.language = "en-us"
+    channel.itunes_subtitle = "Subtitle or description goes here"
+    
+    Track.find(:all).each do |track|
+      item = RSS::Rss::Channel::Item.new
+      item.title = track.title
+      item.link = track.mp3.url
+      
+      item.guid = RSS::Rss::Channel::Item::Guid.new
+      item.guid.content = track.mp3.url
+      item.guid.isPermaLink = true
+      
+      item.description = "here's a description"
+      item.itunes_summary = item.description
+      item.itunes_explicit = "No"
+      
+      item.enclosure = RSS::Rss::Channel::Item::Enclosure.new(item.link, track.mp3_file_size, 'audio/mpeg')
+      channel.items << item
+    end
+    
+    rss.channel = channel
+    return rss.to_s
   end
 end
