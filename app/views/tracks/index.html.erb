@@ -6,6 +6,8 @@
 
 <% @tracks.each do |track| %>
   <p>
-    <%= link_to track.title, track_path(track) %>
+    <%= link_to track.title, track_path(track) %> | 
+    <%= link_to "Edit", edit_track_path(track) %> | 
+    <%= link_to "Delete", track_path(track), :confirm => "Are you sure?", :method => :delete %>
   </p>
 <% end %>

@@ -1,0 +1,38 @@
+<h1>Edit "<%= @track.title %>"</h1>
+
+<% form_for @track, :html => { :multipart => true } do |f| %>
+  <p>
+    Current file:<br />
+    <audio src="<%= @track.mp3.url %>" controls="controls"></audio>
+  </p>
+  <p>
+    <%= f.file_field :mp3 %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :genre %><br />
+    <%= f.text_field :genre %>
+  </p>
+  <p>
+    <%= f.label :grouping %><br />
+    <%= f.text_field :grouping %>
+  </p>
+  <p>
+    <%= f.label :composer %><br />
+    <%= f.text_field :composer %>
+  </p>
+  <p>
+    <%= f.label :album %><br />
+    <%= f.text_field :album %>
+  </p>
+  <p>
+    <%= f.label :comments %><br />
+    <%= f.text_area :comments %>
+  </p>
+  <p>
+    <%= f.submit 'Save' %>
+  </p>
+<% end %>

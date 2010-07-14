@@ -28,6 +28,27 @@ class TracksController < ApplicationController
     @track = Track.find(params[:id])
   end
   
+  def edit
+    @track = Track.find(params[:id])
+  end
+  
+  def update
+    @track = Track.find(params[:id])
+    if @track.update_attributes(params[:track])
+      redirect_to tracks_path
+      flash[:notice] = "Track info saved."
+    else
+      render :action => 'edit'
+    end
+  end
+  
+  def destroy
+    @track = Track.find(params[:id])
+    @track.delete
+    redirect_to tracks_path
+    flash[:notice] = "Track deleted."
+  end
+  
   private
   
   def coerce(params)
