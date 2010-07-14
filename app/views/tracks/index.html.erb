@@ -2,6 +2,8 @@
 
 <h3><%= link_to "Upload Tracks", new_track_path %></h3>
 
+<h3><%= link_to "RSS", formatted_tracks_path("rss") %></h3>
+
 <% @tracks.each do |track| %>
   <p>
     <%= link_to track.title, track_path(track) %>
