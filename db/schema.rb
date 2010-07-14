@@ -9,22 +9,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100611105735) do
+ActiveRecord::Schema.define(:version => 20100714161338) do
 
-  create_table "uploads", :force => true do |t|
-    t.integer  "user_id"
+  create_table "tracks", :force => true do |t|
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "mp3_file_name"
+    t.string   "mp3_content_type"
+    t.integer  "mp3_file_size"
+    t.datetime "mp3_updated_at"
+    t.string   "genre"
+    t.string   "grouping"
+    t.string   "composer"
+    t.text     "comments"
+    t.string   "album"
+    t.string   "artist"
   end
 
 end

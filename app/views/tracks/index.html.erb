@@ -1,0 +1,9 @@
+<h1>Butter Music Library</h1>
+
+<h3><%= link_to "Upload Tracks", new_track_path %></h3>
+
+<% @tracks.each do |track| %>
+  <p>
+    <%= link_to track.title, track_path(track) %>
+  </p>
+<% end %>

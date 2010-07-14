@@ -1,0 +1,15 @@
+<h1><%= @track.title %></h1>
+
+<audio src="<%= @track.mp3.url %>" controls="controls"></audio>
+
+<p>
+  Genre: <%= @track.genre %><br />
+  Grouping: <%= @track.grouping %><br />
+  Composer: <%= @track.composer %><br />
+  Album: <%= @track.album %><br />
+  Comments: <%= @track.comments == "0" ? '' : @track.comments %>
+</p>
+
+<p>
+  <%= link_to "Back", tracks_path %>
+</p>

@@ -1,0 +1,18 @@
+<%= render :partial => 'uploadify' %>
+
+<h1>Add Tracks</h1>
+
+<p>
+  <%= flash[:notice] %>
+</p>
+
+<% form_for @track, :html => {:multipart => true} do |f| %>
+    <p>
+    <%= f.file_field :mp3 %>
+  </p>
+  <p><%= f.submit "Upload" %></p>
+<% end %>
+
+<p>
+  <%= link_to "Done", tracks_path %>
+</p>
