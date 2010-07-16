@@ -34,7 +34,7 @@ class Track < ActiveRecord::Base
     
     channel.title = "Butter Music Library"
     channel.description = "The music library of Butter Music and Sound"
-    channel.link = "http://gimmebutter.com"
+    channel.link = "http://www.gimmebutter.com"
     channel.language = "en-us"
     channel.itunes_subtitle = "Subtitle or description goes here"
     
@@ -47,8 +47,7 @@ class Track < ActiveRecord::Base
       item.guid.content = track.mp3.url
       item.guid.isPermaLink = true
       
-      item.description = "here's a description"
-      item.itunes_summary = item.description
+      item.itunes_summary = track.itunes_description
       item.itunes_explicit = "No"
       
       item.enclosure = RSS::Rss::Channel::Item::Enclosure.new(item.link, track.mp3_file_size, 'audio/mpeg')
@@ -57,5 +56,10 @@ class Track < ActiveRecord::Base
     
     rss.channel = channel
     return rss.to_s
+  end
+  
+  # Sticking genre and grouping in the Podcast description field.
+  def itunes_description
+    "#{self.genre}, #{self.grouping}"
   end
 end
