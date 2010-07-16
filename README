@@ -1,0 +1,22 @@
+Multiple file uploader, used here for Butter Music's Content Distribution System.
+
+SETUP:
+
+sudo rake gems:install
+
+sudo gem install ruby-mp3info
+(mp3-info needs to be installed on the server running this, but is not required in environment.rb)
+
+sudo gem install aws-s3
+(also required on the host server, not in the environment)
+
+rake db:migrate
+
+Should be good to go.
+
+#####################################################
+
+A note on deploying this to Heroku:
+
+The gems on the manifest include the aws-s3 gem, but this is not required in the environment.rb file. DON'T REQUIRE IT THERE. It will break. Keep everything exactly as is. The aws-s3 gem needs to be installed on the server, but does not need to be required in the environment.rb file.
+
