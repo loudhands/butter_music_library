@@ -5,18 +5,20 @@
 <h3><%= link_to "RSS", formatted_tracks_path("rss") %></h3>
 
 <% form_tag edit_multiple_tracks_path do %>
-  <% @tracks.each do |track| %>
-    <p>
-      <%= check_box_tag "track_ids[]", track.id %>
-      <%= link_to track.title, track_path(track) %> | 
-      <%= link_to "Edit", edit_track_path(track) %> | 
-      <%= link_to "Delete", track_path(track), :confirm => "Are you sure?", :method => :delete %>
-    </p>
-  <% end %>
+  <div id="tracks_container">
+    <% @tracks.each do |track| %>
+      <p>
+        <%= check_box_tag "track_ids[]", track.id, false, :onchange => "toggleButtons();" %>
+        <%= link_to track.title, track_path(track) %> | 
+        <%= link_to "Edit", edit_track_path(track) %> | 
+        <%= link_to "Delete", track_path(track), :confirm => "Are you sure?", :method => :delete %>
+      </p>
+    <% end %>
+  </div>
   
   <%= will_paginate(@tracks) %>
   
   <p>
-    <%= submit_tag "Group Edit Selected" %> <%= submit_tag "Delete Selected" %>
+    <%= submit_tag "Group Edit Selected", :id => "group_edit_button" %> <%= submit_tag "Delete Selected", :id => "group_delete_button" %>
   </p>
 <% end %>
