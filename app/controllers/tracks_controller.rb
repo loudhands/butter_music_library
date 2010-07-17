@@ -34,6 +34,12 @@ class TracksController < ApplicationController
   
   def edit_multiple
     @tracks = Track.find(params[:track_ids])
+    
+    if params[:commit] == "Delete Selected"
+      @delete = true
+    else
+      @delete = false
+    end
   end
   
   def update
@@ -60,6 +66,19 @@ class TracksController < ApplicationController
     @track.delete
     redirect_to tracks_path
     flash[:notice] = "Track deleted."
+  end
+  
+  def delete_multiple
+    @tracks = Track.find(params[:track_ids])
+    if params[:commit] == "Yes"
+      @tracks.each do |track|
+        track.destroy
+      end
+      flash[:notice] = "Tracks deleted."
+      redirect_to tracks_path
+    else
+      redirect_to tracks_path
+    end
   end
   
   private
