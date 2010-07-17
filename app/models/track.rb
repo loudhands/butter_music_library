@@ -13,14 +13,16 @@ class Track < ActiveRecord::Base
   
   # Grab the metadata and store it in the DB so we can edit it later.
   def get_meta
-    Mp3Info.open(mp3.to_file.path) do |song|
-      self.title = song.tag2.TT2
-      self.composer = song.tag2.TCM
-      self.grouping = song.tag2.TT1
-      self.genre = song.tag.genre_s
-      self.album = song.tag2.TAL
-      self.comments = song.tag.comments
-      self.artist = song.tag.artist
+    unless RAILS_ENV == "test"
+      Mp3Info.open(mp3.to_file.path) do |song|
+        self.title = song.tag2.TT2
+        self.composer = song.tag2.TCM
+        self.grouping = song.tag2.TT1
+        self.genre = song.tag.genre_s
+        self.album = song.tag2.TAL
+        self.comments = song.tag.comments
+        self.artist = song.tag.artist
+      end
     end
   end
   
