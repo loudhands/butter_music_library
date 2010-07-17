@@ -9,7 +9,7 @@ class Track < ActiveRecord::Base
                           :path => ':attachment/:id/:basename.:extension',
                           :bucket => 'butter_test'
   
-  before_save :get_meta
+  before_create :get_meta
   
   # Grab the metadata and store it in the DB so we can edit it later.
   def get_meta

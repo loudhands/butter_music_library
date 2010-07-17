@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :tracks
+  map.resources :tracks, :collection => { :edit_multiple => :post, :update_multiple => :put }
   
   map.formatted_tracks 'tracks.:format', :controller => 'tracks', :action => 'index'
   

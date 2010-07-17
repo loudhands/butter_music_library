@@ -1,0 +1,40 @@
+<h1>Edit Multiple Tracks</h1>
+
+<% form_for :track, :url => update_multiple_tracks_path, :html => { :method => :put } do |f| %>
+  <ul>
+    <% @tracks.each do |track| %>
+      <li>
+        <%= hidden_field_tag "track_ids[]", track.id %>
+        <%= link_to track.title, track_path(track) %>
+      </li>
+    <% end %>
+  </ul>
+  
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :genre %><br />
+    <%= f.text_field :genre %>
+  </p>
+  <p>
+    <%= f.label :grouping %><br />
+    <%= f.text_field :grouping %>
+  </p>
+  <p>
+    <%= f.label :composer %><br />
+    <%= f.text_field :composer %>
+  </p>
+  <p>
+    <%= f.label :album %><br />
+    <%= f.text_field :album %>
+  </p>
+  <p>
+    <%= f.label :comments %><br />
+    <%= f.text_area :comments %>
+  </p>
+  <p>
+    <%= f.submit 'Save' %>
+  </p>
+<% end %>

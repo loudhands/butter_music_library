@@ -3,11 +3,19 @@
 <h3><%= link_to "Upload Tracks", new_track_path %></h3>
 
 <h3><%= link_to "RSS", formatted_tracks_path("rss") %></h3>
-
-<% @tracks.each do |track| %>
+<% form_tag edit_multiple_tracks_path do %>
+  <% @tracks.each do |track| %>
+    <p>
+      <%= check_box_tag "track_ids[]", track.id %>
+      <%= link_to track.title, track_path(track) %> | 
+      <%= link_to "Edit", edit_track_path(track) %> | 
+      <%= link_to "Delete", track_path(track), :confirm => "Are you sure?", :method => :delete %>
+    </p>
+  <% end %>
+  
+  <%= will_paginate(@tracks) %>
+  
   <p>
-    <%= link_to track.title, track_path(track) %> | 
-    <%= link_to "Edit", edit_track_path(track) %> | 
-    <%= link_to "Delete", track_path(track), :confirm => "Are you sure?", :method => :delete %>
+    <%= submit_tag "Group Edit Selected" %>
   </p>
 <% end %>

@@ -1,7 +1,7 @@
 class TracksController < ApplicationController
   def index
     respond_to do |format|
-      format.html { @tracks = Track.all }
+      format.html { @tracks = Track.paginate(:all, :page => params[:page], :per_page => 20) }
       format.rss { render :xml => Track.rss }
     end
   end
@@ -32,6 +32,10 @@ class TracksController < ApplicationController
     @track = Track.find(params[:id])
   end
   
+  def edit_multiple
+    @tracks = Track.find(params[:track_ids])
+  end
+  
   def update
     @track = Track.find(params[:id])
     if @track.update_attributes(params[:track])
@@ -40,6 +44,15 @@ class TracksController < ApplicationController
     else
       render :action => 'edit'
     end
+  end
+  
+  def update_multiple
+    @tracks = Track.find(params[:track_ids])
+    @tracks.each do |track|
+      track.update_attributes!(params[:track].reject { |k,v| v.blank? })
+    end
+    flash[:notice] = "Tracks updated."
+    redirect_to tracks_path
   end
   
   def destroy
