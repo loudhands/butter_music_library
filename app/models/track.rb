@@ -38,7 +38,7 @@ class Track < ActiveRecord::Base
     channel.description = "The music library of Butter Music and Sound"
     channel.link = "http://gimmebuttertracks.com"
     channel.language = "en-us"
-    channel.itunes_subtitle = "Streaming updates from Butter"
+    channel.itunes_subtitle = "Streaming updates from Butter's music library."
     
     Track.find(:all).each do |track|
       item = RSS::Rss::Channel::Item.new
