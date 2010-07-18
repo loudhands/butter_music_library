@@ -15,6 +15,7 @@ Rails::Initializer.run do |config|
   config.gem 'mime-types', :lib => 'mime/types'
   config.gem 'paperclip'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  config.gem 'clearance'
   
   config.after_initialize do
     config.gem "right_aws"
