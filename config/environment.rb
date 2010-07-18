@@ -16,6 +16,7 @@ Rails::Initializer.run do |config|
   config.gem 'paperclip'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'clearance'
+  config.gem 'websolr-acts_as_solr'
   
   config.after_initialize do
     config.gem "right_aws"
