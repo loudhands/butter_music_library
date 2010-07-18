@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe TracksController do
+  before(:each) do
+    User.delete_all
+    Track.delete_all
+    @user = Factory(:user)
+    @user.email_confirmed = true
+    sign_in_as @user
+  end
   
   describe "GET index" do
     before(:each) do

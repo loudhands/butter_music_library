@@ -53,3 +53,8 @@ Spec::Runner.configure do |config|
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
 end
+
+def sign_in_as(user)
+  @controller.current_user = user
+  return user
+end
