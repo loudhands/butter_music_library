@@ -1,4 +1,6 @@
 class TracksController < ApplicationController
+  before_filter :authenticate, :except => :create
+  
   def index
     respond_to do |format|
       format.html { @tracks = Track.paginate(:all, :page => params[:page], :per_page => 20) }
