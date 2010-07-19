@@ -4,6 +4,10 @@
 
 <h3><%= link_to "RSS", formatted_tracks_path("rss") %></h3>
 
+<% form_tag tracks_path, :method => 'get' do %>
+  <%= text_field_tag :search, @search %>
+<% end %>
+
 <% form_tag edit_multiple_tracks_path do %>
   <div id="tracks_container">
     <table>
@@ -23,7 +27,7 @@
     </table>
   </div>
 
-  <%= will_paginate(@tracks) %>
+  <%= will_paginate @tracks, :params => {:search => @search}%>
   
   <p>
     <%= submit_tag "Group Edit Selected", :id => "group_edit_button" %> <%= submit_tag "Delete Selected", :id => "group_delete_button" %>
