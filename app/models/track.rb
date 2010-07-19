@@ -10,7 +10,7 @@ class Track < ActiveRecord::Base
   has_attached_file :mp3, :storage => :s3, 
                           :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                           :path => ':attachment/:id/:basename.:extension',
-                          :bucket => 'butter'
+                          :bucket => 'butter_music_library'
   
   before_create :get_meta
   
