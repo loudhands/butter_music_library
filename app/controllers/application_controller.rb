@@ -8,4 +8,9 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+  private
+  
+  def admin_only
+    deny_access unless current_user.admin?
+  end
 end

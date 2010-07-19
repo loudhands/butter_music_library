@@ -26,6 +26,12 @@ describe TracksController do
       get :index, :format => "rss"
       response.should be_success
     end
+    
+    it "should let me see the RSS feed even if I'm not logged in" do
+      sign_out
+      get :index, :format => "rss"
+      response.should be_success
+    end
   end
   
   describe "GET new" do

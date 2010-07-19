@@ -11,7 +11,7 @@
     <div id="container">
       <div class="nav">
         <% if signed_in? %>
-          Logged in as <%= current_user.email %> | <%= link_to "Log Out", sign_out_path %>
+          Logged in as <%= current_user.email %> | <%= link_to "Log Out", sign_out_path %> | <%= link_to "Tracks", tracks_path %> <% if current_user.admin? %> | <%= link_to "Users", users_path %> <% end %>
         <% end %>
       </div>
       

@@ -1,0 +1,9 @@
+<h1>Users</h1>
+
+<h3><%= link_to "Add a User", new_user_path %></h3>
+
+<% @users.each do |user| %>
+  <p>
+    <%= link_to user.email, edit_user_path(user) %> <%= user.admin? ? "(Admin)" : "" %> | <%= link_to "Delete", user_path(user), :confirm => "Are you sure?", :method => :delete %>
+  </p>
+<% end %>

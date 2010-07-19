@@ -4,3 +4,5 @@ ruby-mp3info
 right_aws
 aws-s3
 mislav-will_paginate --version '~>2.2.3' --source http://gems.github.com
+websolr-acts_as_solr
+clearance
