@@ -13,18 +13,54 @@
 </p>
 
 <% form_tag edit_multiple_tracks_path do %>
-  <div id="tracks_container">
-    <table>
-      <tbody>
+  <table id="tracks_container" class="content alternating tablesorter" summary="Butter Feed Track Listing">
+    <thead>
+      <th>
+        <input type="checkbox" id="all">
+      </th>
+      <th>
+        Title
+      </th>
+      <th>
+        Artist
+      </th>
+      <th>
+        Composer
+      </th>
+      <th>
+        Album
+      </th>
+      <th>
+        Genre
+      </th>
+      <th>
+      </th>
+    </thead>
+    <tbody>
     <% @tracks.each do |track| %>
       <tr>
-        <td><%= check_box_tag "track_ids[]", track.id, false, :onchange => "toggleButtons();" %></td>
-        <td><%= link_to track.title, track_path(track) %></td>
-        <td><%= track.genre %></td> 
-        <td><%= track.grouping %></td> 
-        <td><%= track.composer %></td> 
-        <td><%= link_to "Edit", edit_track_path(track) %></td> 
-        <td><%= link_to "Delete", track_path(track), :confirm => "Are you sure?", :method => :delete %></td>
+        <td>
+          <%= check_box_tag "track_ids[]", track.id, false, :onchange => "toggleButtons();" %>
+        </td>
+        <td>
+          <%= link_to track.title, track_path(track) %>
+        </td>
+        <td>
+          <%= track.artist %>
+        </td>
+        <td>
+          <%= track.composer %>
+        </td>
+        <td>
+          <%= track.grouping %>
+        </td>
+        <td>
+          <%= track.genre %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_track_path(track) %> | 
+          <%= link_to "Delete", track_path(track), :confirm => "Are you sure?", :method => :delete %>
+        </td>
       </tr>
     <% end %>
     </tbody>
@@ -39,3 +75,13 @@
     <%= submit_tag "Group Edit Selected", :id => "group_edit_button" %> <%= submit_tag "Delete Selected", :id => "group_delete_button" %>
   </p>
 <% end %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $("table").tablesorter({ 
+          // sort on the first column and third column, order asc 
+          sortList: [[0,0],[2,0]] 
+      });
+	$("#myTable").tablesorter();
+});
+</script>

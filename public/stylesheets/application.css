@@ -1,5 +1,5 @@
 body {
-  background-color: #4B7399;
+  background-color: #7888ad;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }
@@ -79,3 +79,31 @@ a {
   font-size: 12px;
   list-style: disc;
 }
+
+table {
+  border-bottom: 1px solid #bbbbbb;
+  border-left: 1px solid #bbbbbb;
+  border-collapse: collapse; }
+  table caption {
+    margin-bottom: 10px; }
+  table th {
+    background: black;
+    color: white;
+    padding: 5px; }
+  table td {
+    border-top: 1px solid #bbbbbb;
+    padding: 5px; }
+  table.alternating tr:nth-child(even) {
+    background: #f1f5fa; }
+  table.content {
+    border: none;
+    width: 100%; }
+    table.content th {
+      background: none;
+      border-bottom: 1px solid #bbbbbb;
+      color: black;
+      text-align: left; }
+    table.content td {
+      border: 0;
+      border-right: 1px solid #ddd;
+     }

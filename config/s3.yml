@@ -7,3 +7,8 @@ production:
   access_key_id: AKIAJVNGWQGBR2HCQ45Q
   secret_access_key: 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
   bucket: butter_music_library
+  
+test:
+  access_key_id: AKIAJVNGWQGBR2HCQ45Q
+  secret_access_key: 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
+  bucket: butter_music_library_development

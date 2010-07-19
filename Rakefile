@@ -9,3 +9,4 @@ require 'rake/rdoctask'
 
 require 'tasks/rails'
 require 'aas_tasks'
+require 'aas_tasks'
