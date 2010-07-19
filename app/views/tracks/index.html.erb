@@ -4,9 +4,13 @@
 
 <h3><%= link_to "RSS", formatted_tracks_path("rss") %></h3>
 
-<% form_tag tracks_path, :method => 'get' do %>
+<!-- <% form_tag tracks_path, :method => 'get' do %>
   <%= text_field_tag :search, @search %>
-<% end %>
+<% end %> -->
+
+<p>
+  <%= will_paginate @tracks, :params => {:search => @search}%>
+</p>
 
 <% form_tag edit_multiple_tracks_path do %>
   <table id="tracks_container" class="content alternating tablesorter" summary="Butter Feed Track Listing">
@@ -62,8 +66,10 @@
     </tbody>
     </table>
   </div>
-
-  <%= will_paginate @tracks, :params => {:search => @search}%>
+  
+  <p>
+    <%= will_paginate @tracks, :params => {:search => @search}%>
+  </p>
   
   <p>
     <%= submit_tag "Group Edit Selected", :id => "group_edit_button" %> <%= submit_tag "Delete Selected", :id => "group_delete_button" %>
