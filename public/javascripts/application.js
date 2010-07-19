@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	toggleButtons();
+	selectAll();
 });
 
 function toggleButtons() {
@@ -10,4 +11,12 @@ function toggleButtons() {
 		$("#group_edit_button").attr('disabled', true);
 		$("#group_delete_button").attr('disabled', true);
 	}
+}
+
+function selectAll() {
+  var tog = false; // or true if they are checked on load 
+   $('#tracks_container th :input').click(function() { 
+      $("input[type=checkbox]").attr("checked",!tog); 
+    tog = !tog; 
+   });
 }
