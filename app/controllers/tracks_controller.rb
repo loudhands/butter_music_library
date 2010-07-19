@@ -1,5 +1,9 @@
 class TracksController < ApplicationController
-  before_filter :authenticate, :except => :create
+  before_filter :authenticate, :except => [:create, :index]
+  before_filter :only => :index do |c|
+    c.send(:authenticate) unless c.request.format.rss?
+  end
+    
   
   def index
     respond_to do |format|
