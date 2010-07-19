@@ -4,9 +4,9 @@
 
 <h3><%= link_to "RSS", formatted_tracks_path("rss") %></h3>
 
-<% form_tag tracks_path, :method => 'get' do %>
+<!-- <% form_tag tracks_path, :method => 'get' do %>
   <%= text_field_tag :search, @search %>
-<% end %>
+<% end %> -->
 
 <% form_tag edit_multiple_tracks_path do %>
   <div id="tracks_container">
