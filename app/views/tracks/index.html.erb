@@ -5,16 +5,54 @@
 <h3><%= link_to "RSS", formatted_tracks_path("rss") %></h3>
 
 <% form_tag edit_multiple_tracks_path do %>
-  <div id="tracks_container">
+  <table id="tracks_container" class="content alternating" summary="Butter Feed Track Listing">
+    <th>
+      <input type="checkbox" id="all">
+    </th>
+    <th>
+      Title
+    </th>
+    <th>
+      Artist
+    </th>
+    <th>
+      Composer
+    </th>
+    <th>
+      Album
+    </th>
+    <th>
+      Genre
+    </th>
+    <th>
+    </th>
     <% @tracks.each do |track| %>
-      <p>
-        <%= check_box_tag "track_ids[]", track.id, false, :onchange => "toggleButtons();" %>
-        <%= link_to track.title, track_path(track) %> | 
-        <%= link_to "Edit", edit_track_path(track) %> | 
-        <%= link_to "Delete", track_path(track), :confirm => "Are you sure?", :method => :delete %>
-      </p>
+      <tr>
+        <td>
+          <%= check_box_tag "track_ids[]", track.id, false, :onchange => "toggleButtons();" %>
+        </td>
+        <td>
+          <%= link_to track.title, track_path(track) %>
+        </td>
+        <td>
+          <%= track.artist %>
+        </td>
+        <td>
+          <%= track.composer %>
+        </td>
+        <td>
+          <%= track.album %>
+        </td>
+        <td>
+          <%= track.genre %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_track_path(track) %> | 
+          <%= link_to "Delete", track_path(track), :confirm => "Are you sure?", :method => :delete %>
+        </td>
+      </tr>
     <% end %>
-  </div>
+  </table>
   
   <%= will_paginate(@tracks) %>
   
