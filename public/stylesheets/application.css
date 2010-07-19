@@ -89,6 +89,7 @@ table {
   table th {
     background: black;
     color: white;
+    cursor: pointer;
     padding: 5px; }
   table td {
     border-top: 1px solid #bbbbbb;

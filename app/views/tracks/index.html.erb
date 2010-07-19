@@ -65,23 +65,13 @@
     <% end %>
     </tbody>
     </table>
+    <p>
+      <%= submit_tag "Group Edit Selected", :id => "group_edit_button" %> <%= submit_tag "Delete Selected", :id => "group_delete_button" %>
+    </p>
   </div>
   
   <p>
     <%= will_paginate @tracks, :params => {:search => @search}%>
   </p>
   
-  <p>
-    <%= submit_tag "Group Edit Selected", :id => "group_edit_button" %> <%= submit_tag "Delete Selected", :id => "group_delete_button" %>
-  </p>
 <% end %>
-
-<script type="text/javascript">
-$(document).ready(function() {
-  $("table").tablesorter({ 
-          // sort on the first column and third column, order asc 
-          sortList: [[0,0],[2,0]] 
-      });
-	$("#myTable").tablesorter();
-});
-</script>
