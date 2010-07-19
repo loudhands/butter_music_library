@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	toggleButtons();
 	selectAll();
+	$("table#tracks_container").tablesorter(); 
 });
 
 function toggleButtons() {
