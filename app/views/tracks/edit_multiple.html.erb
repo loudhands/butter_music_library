@@ -14,7 +14,7 @@
     </ul>
   
     <p>
-      <%= f.submit "Yes" %> <%= f.submit "No" %>
+      <%= f.submit "Yes", :disable_with => "Deleting..." %> <%= f.submit "No" %>
     </p>
   <% end %>
   
@@ -58,7 +58,7 @@
       <%= f.text_area :comments %>
     </p>
     <p>
-      <%= f.submit 'Save' %>
+      <%= f.submit 'Save', :disable_with => "Updating info..." %>
     </p>
   <% end %>
 <% end %>

@@ -3,6 +3,8 @@ require 'rss/2.0'
 require 'rss/itunes'
 require 'mime/types'
 
+require 'solr_pagination'
+
 class Track < ActiveRecord::Base
   has_attached_file :mp3, :storage => :s3, 
                           :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
@@ -23,6 +25,14 @@ class Track < ActiveRecord::Base
         self.comments = song.tag.comments
         self.artist = song.tag.artist
       end
+    end
+  end
+  
+  def self.search(search, page)
+    if search.blank?
+      paginate :page => page, :per_page => 20
+    else
+      paginate_search(search, page, 20)
     end
   end
   

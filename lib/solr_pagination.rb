@@ -1,14 +1,12 @@
-# By Henrik Nyh <http://henrik.nyh.se> 2007-06-18.
-# Free to modify and redistribute with credit.
-
-# Adds a find_all_by_solr method to acts_as_solr models to enable 
-# will_paginate for acts_as_solr search results.
-
 module ActsAsSolr
-  module PaginationExtension
+  module PaginationExtension   
 
-    def find_all_by_solr(*args)
-      find_by_solr(*args).records
+    def paginate_search(query, page, per_page)
+      pager = WillPaginate::Collection.new(page, per_page)
+      result = result = find_by_solr(query)
+      returning WillPaginate::Collection.new(page, per_page, result.total_hits) do |pager|
+        pager.replace result.docs
+      end
     end
 
   end
