@@ -4,14 +4,15 @@ require 'rss/itunes'
 require 'mime/types'
 
 class Track < ActiveRecord::Base
-  acts_as_solr
   
   has_attached_file :mp3, :storage => :s3, 
                           :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                           :path => ':attachment/:id/:basename.:extension',
-                          :bucket => 'butter'
+                          :bucket => 'butter_music_library'
   
   before_create :get_meta
+  
+  acts_as_solr
   
   # Grab the metadata and store it in the DB so we can edit it later.
   def get_meta
