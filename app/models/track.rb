@@ -2,18 +2,17 @@ require 'mp3info'
 require 'rss/2.0'
 require 'rss/itunes'
 require 'mime/types'
-
 require 'solr_pagination'
 
 class Track < ActiveRecord::Base
   
   has_attached_file :mp3, :storage => :s3, 
                           :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-                          :path => ':attachment/:id/:basename.:extension',
-                          :bucket => 'butter_music_library'
+                          :path => ':attachment/:id/:basename.:extension'
   
   before_create :get_meta
   
+  # Sticking Solr in after paperclip because the reverse causes problems...
   acts_as_solr
   
   # Grab the metadata and store it in the DB so we can edit it later.
@@ -31,6 +30,7 @@ class Track < ActiveRecord::Base
     end
   end
   
+  # Solr search with pagination.
   def self.search(search, page)
     if search.blank?
       paginate :page => page, :per_page => 20

@@ -1,2 +1,9 @@
-access_key_id: AKIAJVNGWQGBR2HCQ45Q
-secret_access_key: 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
+development:
+  access_key_id: AKIAJVNGWQGBR2HCQ45Q
+  secret_access_key: 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
+  bucket: butter_music_library_development
+  
+production:
+  access_key_id: AKIAJVNGWQGBR2HCQ45Q
+  secret_access_key: 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
+  bucket: butter_music_library
