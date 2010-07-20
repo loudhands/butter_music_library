@@ -68,10 +68,9 @@
     <p>
       <%= submit_tag "Group Edit Selected", :id => "group_edit_button" %> <%= submit_tag "Delete Selected", :id => "group_delete_button" %>
     </p>
+    <p>
+      <%= will_paginate @tracks, :params => {:search => @search}%>
+    </p>
   </div>
-  
-  <p>
-    <%= will_paginate @tracks, :params => {:search => @search}%>
-  </p>
   
 <% end %>
