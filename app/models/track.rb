@@ -1,5 +1,6 @@
 require 'mp3info'
-
+require 'rss/2.0'
+require 'rss/itunes'
 require 'mime/types'
 require 'solr_pagination'
 
