@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	toggleButtons();
 	selectAll();
-	$("table#tracks_container :not('input')").tablesorter(); 
+	$("table#tracks_container").tablesorter({ headers: { 0: { sorter: false }} });
 });
 
 function toggleButtons() {
