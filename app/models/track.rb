@@ -51,18 +51,23 @@ class Track < ActiveRecord::Base
     channel.link = "http://gimmebuttertracks.com"
     channel.language = "en-us"
     channel.itunes_subtitle = "Streaming updates from Butter's music library."
+    channel.itunes_author = "Butter Music and Sound"
+    channel.itunes_owner = RSS::ITunesChannelModel::ITunesOwner.new
+    channel.itunes_owner.itunes_name = "Butter Music and Sound"
+    channel.itunes_owner.itunes_email = "maloney.mc@gmail.com"
     
     Track.find(:all).each do |track|
       item = RSS::Rss::Channel::Item.new
       item.title = track.title
-      item.link = track.mp3.url
+      item.link = track.itunes_filename
       
       item.guid = RSS::Rss::Channel::Item::Guid.new
-      item.guid.content = track.mp3.url
+      item.guid.content = track.itunes_filename
       item.guid.isPermaLink = true
       
       item.itunes_summary = track.itunes_description
       item.itunes_explicit = "No"
+      item.itunes_author = "Butter Music and Sound"
       
       item.enclosure = RSS::Rss::Channel::Item::Enclosure.new(item.link, track.mp3_file_size, 'audio/mpeg')
       channel.items << item
@@ -75,5 +80,13 @@ class Track < ActiveRecord::Base
   # Sticking genre and grouping in the Podcast description field.
   def itunes_description
     "#{self.genre}, #{self.grouping}"
+  end
+  
+  def itunes_filename
+    if RAILS_ENV == "development" || RAILS_ENV == "test"
+      "http://s3.amazonaws.com/butter_music_library_development/#{self.mp3.path}"
+    else
+      "http://s3.amazonaws.com/butter_music_library/#{self.mp3.path}"
+    end
   end
 end
