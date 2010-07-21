@@ -47,15 +47,15 @@ class Track < ActiveRecord::Base
     category = RSS::ITunesChannelModel::ITunesCategory.new("Arts")
     channel.itunes_categories << category
     
-    channel.title = "Butter Music Library"
-    channel.description = "The music library of Butter Music and Sound"
+    channel.title = "Butter Music and Sound"
+    channel.description = "The music library of Butter Music and Sound."
     channel.link = "http://gimmebuttertracks.com"
     channel.language = "en-us"
     channel.itunes_subtitle = "Streaming updates from Butter's music library."
     channel.itunes_author = "Butter Music and Sound"
     channel.itunes_owner = RSS::ITunesChannelModel::ITunesOwner.new
     channel.itunes_owner.itunes_name = "Butter Music and Sound"
-    channel.itunes_owner.itunes_email = "maloney.mc@gmail.com"
+    channel.itunes_owner.itunes_email = "ian@gimmebutter.com"
     
     Track.find(:all).each do |track|
       item = RSS::Rss::Channel::Item.new
@@ -83,8 +83,12 @@ class Track < ActiveRecord::Base
     "#{self.genre}, #{self.grouping}"
   end
   
+  # Need to CGI escape any tracks with spaces in the name or the RSS feed won't validate.
   def itunes_filename
-    if RAILS_ENV == "development" || RAILS_ENV == "test"
+    case RAILS_ENV
+    when "test"
+      self.mp3.url
+    when "development"
       "http://s3.amazonaws.com/butter_music_library_development/#{CGI.escape(self.mp3.path)}"
     else
       "http://s3.amazonaws.com/butter_music_library/#{CGI.escape(self.mp3.path)}"
