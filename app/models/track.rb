@@ -3,6 +3,7 @@ require 'rss/2.0'
 require 'rss/itunes'
 require 'mime/types'
 require 'solr_pagination'
+require 'cgi'
 
 class Track < ActiveRecord::Base
   has_attached_file :mp3, :storage => :s3, 
@@ -84,9 +85,9 @@ class Track < ActiveRecord::Base
   
   def itunes_filename
     if RAILS_ENV == "development" || RAILS_ENV == "test"
-      "http://s3.amazonaws.com/butter_music_library_development/#{self.mp3.path}"
+      "http://s3.amazonaws.com/butter_music_library_development/#{CGI.escape(self.mp3.path)}"
     else
-      "http://s3.amazonaws.com/butter_music_library/#{self.mp3.path}"
+      "http://s3.amazonaws.com/butter_music_library/#{CGI.escape(self.mp3.path)}"
     end
   end
 end
