@@ -56,7 +56,7 @@ class Track < ActiveRecord::Base
     
     channel.image = RSS::Rss::Channel::Image.new
     channel.image.url = "http://gimmebuttertracks.com/images/Butter-Album.jpg"
-    channel.itunes_image = RSS::ITunesChannelModel::ITunesImage.new("/images/Butter-Album.jpg")
+    channel.itunes_image = RSS::ITunesChannelModel::ITunesImage.new("http://gimmebuttertracks.com/images/Butter-Album.jpg")
     
     channel.itunes_owner = RSS::ITunesChannelModel::ITunesOwner.new
     channel.itunes_owner.itunes_name = "Butter Music and Sound"
