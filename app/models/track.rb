@@ -53,7 +53,7 @@ class Track < ActiveRecord::Base
     channel.language = "en-us"
     channel.itunes_subtitle = "Streaming updates from Butter's music library."
     channel.itunes_author = "Butter Music and Sound"
-    channel.itunes_image = RSS::ITunesChannelModel::ITunesImage.new("#{RAILS_ROOT}/public/images/Butter-Album.jpg")
+    channel.itunes_image = RSS::ITunesChannelModel::ITunesImage.new("http://gimmebuttertracks.com/images/Butter-Album.jpg")
     channel.itunes_owner = RSS::ITunesChannelModel::ITunesOwner.new
     channel.itunes_owner.itunes_name = "Butter Music and Sound"
     channel.itunes_owner.itunes_email = "ian@gimmebutter.com"
