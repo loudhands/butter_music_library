@@ -1,0 +1,25 @@
+
+  <tr>
+    <td>
+      <%= check_box_tag "track_ids[]", track.id, false, :onchange => "toggleButtons();" %>
+    </td>
+    <td>
+      <%= link_to track.title, track_path(track) %>
+    </td>
+    <td>
+      <%= track.artist %>
+    </td>
+    <td>
+      <%= track.composer %>
+    </td>
+    <td>
+      <%= track.grouping %>
+    </td>
+    <td>
+      <%= track.genre %>
+    </td>
+    <td>
+      <%= link_to "Edit", edit_track_path(track) %> | 
+      <%= link_to "Delete", track_path(track), :confirm => "Are you sure?", :method => :delete %>
+    </td>
+  </tr>

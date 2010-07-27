@@ -10,6 +10,11 @@ class TracksController < ApplicationController
       format.html { @tracks = Track.search(params[:search], params[:page] ||= 1) }
       format.rss { render :xml => Track.rss }
     end
+    
+    if request.xhr?
+      sleep(3)
+      render :partial => @tracks
+    end
   end
 
   def new
