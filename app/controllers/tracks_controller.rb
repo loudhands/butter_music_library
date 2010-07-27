@@ -7,7 +7,7 @@ class TracksController < ApplicationController
   
   def index
     respond_to do |format|
-      format.html { @tracks = Track.search(params[:search], params[:page] ||= 1) }
+      format.html { @tracks = Track.all.paginate(:per_page => 25, :page => params[:page]) }
       format.rss { render :xml => Track.rss }
     end
     
