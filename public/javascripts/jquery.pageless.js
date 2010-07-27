@@ -139,6 +139,7 @@
         $.pageless.loading(false);
         // if there is a complete callback we call it
         if ($.pageless.settings.complete) { $.pageless.settings.complete.call(); }
+				$("#tracks_container").trigger("update");
       });
     }
   };

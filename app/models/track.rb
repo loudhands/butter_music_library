@@ -12,6 +12,8 @@ class Track < ActiveRecord::Base
   
   before_create :get_meta
   
+  default_scope :order => 'title'
+  
   # Sticking Solr in after paperclip because the reverse causes problems...
   acts_as_solr
   

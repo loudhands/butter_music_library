@@ -8,10 +8,6 @@
   <%= text_field_tag :search, @search %>
 <% end %> -->
 
-<p>
-  <%= will_paginate @tracks, :params => {:search => @search}%>
-</p>
-
 <% form_tag edit_multiple_tracks_path do %>
   <table id="tracks_container" class="content alternating tablesorter" summary="Butter Feed Track Listing">
     <thead>
@@ -36,10 +32,8 @@
       <th>
       </th>
     </thead>
-    <tbody>
-    <div id="results">
+    <tbody id="results">
       <%= render :partial => "track", :collection => @tracks %>
-    </div>
     </tbody>
     </table>
     <p>
